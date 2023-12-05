@@ -1,0 +1,144 @@
+		--tabela plataformas--
+
+
+CREATE TABLE "tb_plataforma" (
+	"cod_plataforma"	INTEGER,
+	"nome"	TEXT,
+	"fabricante"	TEXT,
+	PRIMARY KEY("cod_plataforma" AUTOINCREMENT)
+);
+
+
+
+		--tabela jogos--
+
+
+CREATE TABLE "tb_jogo" (
+	"cod_jogo"	INTEGER,
+	"titulo"	TEXT NOT NULL,
+	"lancamento"	TEXT NOT NULL,
+	"genero"	TEXT NOT NULL,
+	"cod_plataforma"	INTEGER NOT NULL,
+	PRIMARY KEY("cod_jogo" AUTOINCREMENT),
+	
+);
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+		--inserir dados na tabela plataforma--
+
+
+
+INSERT INTO tb_plataforma (nome,fabricante)
+	VALUES
+		('PlayStation5','Sony'),
+		('PlayStation2','Sony'),
+		('Xbox360','Microsoft'),
+		('PlayStation3','Sony'),
+		('XboxOne','Microsoft'),
+		('Xbox Series X','Microsoft'),
+		('Xbox Series S','Microsoft'),
+		('Nintendo Switch','Nintendo'),
+		('Nintendo Switch lite','Nintendo'),
+		('PlayStation4','Sony');
+	
+	
+	--inserir dados na tabela jogos
+	INSERT INTO tb_jogo (titulo,genero,lancamento, cod_plataforma)
+VALUES
+    ('Demon´Souls','RPG','2020-11-12',1),
+	 ('Halo Infinite','FPS','2023-1-11',2),
+	('Ratchet & Clank: Rift Apart','Ação','2019-11-9',3),
+	 ('Forza Horizon 5','Corrida','2020-11-12',4),
+	  ('The Legend of Zelda: Breath of the Wild','Ação','2021-5-1',5),
+	   ('Valorant','FPS','2023-12-12',6),
+	    ('God of War','Ação','2020-1-7',7),
+		 ('Pokemon Sword','RPG','2018-10-10',8),
+		  ('Pokemon Shield','RPG','2018-10-10',9),
+		   ('Wil Sports Resort','Esports','2020-11-12',10);
+		   
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------		
+			--localizar--   
+
+ 
+--filtrar por dados do atributo "fabricante" que possuem "Sony"
+SELECT * FROM tb_plataforma WHERE fabricante = "Sony";
+
+--filtrar por dados do atributo "genero" que possuem "RPG"
+SELECT * FROM tb_jogo WHERE genero = "RPG";
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	--comando "INNER JOIN"--
+
+
+SELECT
+	tb_plataforma.nome,
+	tb_plataforma.fabricante,
+	tb_jogo.titulo,
+	tb_jogo.lancamento,
+	tb_jogo.genero
+FROM
+	tb_plataforma
+INNER JOIN
+	tb_jogo ON tb_jogo.cod_plataforma = tb_plataforma.cod_plataforma;
+	
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+	--PARTE DE UPDATES--
+	
+	--UPDATE 1
+	UPDATE tb_jogo
+SET lancamento = '2023-01-23'
+WHERE cod_jogo = 5
+
+    --UPDATE 2
+UPDATE tb_plataforma
+SET nome = 'PlayStation10'
+WHERE cod_plataforma = 2
+
+    --UPDATE 3
+UPDATE tb_jogo
+SET genero = 'Aventura'
+WHERE cod_jogo = 10
+
+    --UPDATE 4
+UPDATE tb_plataforma
+SET fabricante = 'MarceloStation99'
+WHERE cod_plataforma = 7
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+    --PARTDE DELETAR JOGOS--
+
+
+-- primeiro deletado
+DELETE FROM tb_jogo WHERE  cod_jogo = 6
+
+-- segundo deletado
+DELETE FROM tb_jogo WHERE  cod_jogo = 7
+
+-- terceiro deletado
+DELETE FROM tb_jogo WHERE  cod_jogo = 8
+
+--quarto deletado
+DELETE FROM tb_jogo WHERE  cod_jogo = 9
+
+
+
+
+	
+	
+	
+	
+	
+
+ 

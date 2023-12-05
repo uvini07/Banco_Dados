@@ -1,0 +1,225 @@
+-- Criação das tabelas
+CREATE TABLE tb_cliente (
+    cliente_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    cnh TEXT,
+    telefone TEXT
+);
+
+CREATE TABLE tb_veiculo (
+
+    veiculo_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    modelo TEXT NOT NULL,
+    ano INTEGER NOT NULL,
+    placa TEXT NOT NULL,
+    disponibilidade TEXT NOT NULL
+);
+
+CREATE TABLE tb_aluguel (
+
+    aluguel_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cliente_id INTEGER NOT NULL,
+    veiculo_id INTEGER NOT NULL,
+    data_inicio DATE NOT NULL,
+    data_fim DATE NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES tb_cliente (cliente_id),
+    FOREIGN KEY (veiculo_id) REFERENCES tb_veiculo (veiculo_id)
+);
+
+-- Inserção de registros fictícios
+INSERT INTO tb_cliente (nome, cnh, telefone)
+ VALUES
+
+    ('João da Silva', '123456789', '123-456-7890'),
+    ('Maria Souza', '987654321', '987-654-3210'),
+    ('Carlos Oliveira', '567890123', '567-890-1230'),
+    ('Ana Pereira', '321456789', '321-456-7890'),
+    ('Pedro Santos', '456789012', '456-789-0120'),
+    ('Luiza Almeida', '789012345', '789-012-3450'),
+    ('Mário Ferreira', '234567890', '234-567-8900'),
+    ('Laura Rocha', '890123456', '890-123-4560');
+
+INSERT INTO tb_veiculo (modelo, ano, placa, disponibilidade)
+ VALUES
+
+    ('Honda Civic', 2020, 'ABC123', 'disponível'),
+    ('Toyota Corolla', 2019, 'PLAY456', 'disponível'),
+    ('Ford Fusion', 2021, 'MARCE9', 'disponível'),
+    ('Chevrolet Cruze', 2018, 'VINIC', 'disponível'),
+    ('Volkswagen Golf', 2022, 'JKLsad', 'disponível'),
+    ('Nissan Sentra', 2020, 'MNO678', 'indisponivel'),
+    ('Hyundai Elantra', 2021, 'PQR901', 'disponível'),
+    ('Kia Optima', 2019, 'STU234', indisponivel);
+
+-- Criação de contratos fictícios
+INSERT INTO tb_aluguel (cliente_id, veiculo_id, data_inicio, data_fim) 
+VALUES
+    (1, 1, '2023-09-15', '2023-09-20'),
+    (2, 2, '2023-09-16', '2023-09-21'),
+    (3, 3, '2023-09-17', '2023-09-22'),
+    (4, 4, '2023-09-18', '2023-09-23'),
+    (5, 5, '2023-09-19', '2023-09-24'),
+    (6, 6, '2023-09-19', '2023-09-24'),
+    (7, 7, '2023-09-19', '2023-09-24'),
+    (8, 8, '2023-09-19', '2023-09-24');
+
+
+--CONSULTA  TB_CLIENTE	
+ 1 -SELECT * FROM tb_cliente WHERE telefone = "123-456-7890";
+    
+ 2- SELECT * FROM tb_cliente WHERE cnh = "987654321";
+
+ 3 - SELECT nome,cnh FROM tb_cliente WHERE cnh = "987654321";
+
+
+--CONSULTA TB_VEICULO
+
+ 1 - SELECT * FROM tb_veiculo WHERE ano = "2020";
+
+ 2 - SELECT * FROM tb_veiculo WHERE veiculo_id = "2";
+
+ 3 - SELECT * FROM tb_veiculo WHERE disponibilidade = "disponível";
+
+
+
+
+
+
+--INNER JOIN
+
+1 - SELECT 
+		tb_cliente.nome,
+		tb_cliente.cnh, 
+		
+		tb_veiculo.modelo, 
+		tb_veiculo.placa, 
+		tb_veiculo.disponibilidade, 
+		
+		tb_aluguel.aluguel_id,
+		tb_aluguel.data_inicio,
+		tb_aluguel.data_fim
+
+	FROM 
+		tb_aluguel
+	INNER JOIN 
+		tb_cliente ON tb_cliente.cliente_id = tb_aluguel.cliente_id
+	INNER JOIN 
+		tb_veiculo ON tb_veiculo.veiculo_id = tb_aluguel.veiculo_id;
+
+
+
+2 - SELECT 
+		tb_cliente.nome,
+		tb_cliente.cnh, 
+		
+		tb_veiculo.modelo, 
+		tb_veiculo.placa, 
+		tb_veiculo.disponibilidade, 
+		
+		tb_aluguel.aluguel_id,
+		tb_aluguel.data_inicio,
+		tb_aluguel.data_fim
+
+	FROM 
+		tb_aluguel
+	INNER JOIN 
+		tb_cliente ON tb_cliente.cliente_id = tb_aluguel.cliente_id
+	INNER JOIN 
+		tb_veiculo ON tb_veiculo.veiculo_id = tb_aluguel.veiculo_id
+	WHERE
+	tb_veiculo.disponibilidade = "disponivel";
+
+
+
+3- SELECT 
+		tb_cliente.nome,
+		tb_cliente.cnh, 
+		
+		tb_veiculo.modelo, 
+		tb_veiculo.placa, 
+		tb_veiculo.disponibilidade, 
+		
+		tb_aluguel.aluguel_id,
+		tb_aluguel.data_inicio,
+		tb_aluguel.data_fim
+
+	FROM 
+		tb_aluguel
+	INNER JOIN 
+		tb_cliente ON tb_cliente.cliente_id = tb_aluguel.cliente_id
+	INNER JOIN 
+		tb_veiculo ON tb_veiculo.veiculo_id = tb_aluguel.veiculo_id
+	WHERE
+		tb_veiculo.disponibilidade = "indisponivel";
+
+
+--UPDATE
+
+
+	1 - UPDATE tb_veiculo
+		SET modelo = 'Yaris'
+		WHERE veiculo_id = 2;
+	
+
+	UPDATE tb_veiculo
+		SET modelo = 'Yaris Sendan'
+		WHERE veiculo_id = 6;
+	
+	UPDATE tb_veiculo
+		SET modelo = 'Fusca'
+	WHERE veiculo_id = 1;
+	
+	UPDATE tb_veiculo
+		SET modelo = 'Fusca Rosa'
+		WHERE veiculo_id = 8;
+	
+	UPDATE tb_veiculo
+		SET modelo = 'Fusca Verde'
+		WHERE veiculo_id = 3;
+		
+
+
+	2 - UPDATE tb_aluguel
+	SET data_inicio = '26/20/1342'
+	WHERE aluguel_id = 2;
+	
+	UPDATE tb_aluguel
+		SET data_inicio = '17/93/1923'
+		WHERE aluguel_id = 1;
+	
+	UPDATE tb_aluguel
+		SET data_inicio = '10/10/1010'
+		WHERE aluguel_id = 5;
+	
+	UPDATE tb_aluguel
+		SET data_inicio = '09/09/0909'
+		WHERE aluguel_id = 2;
+	
+	UPDATE tb_aluguel
+		SET data_inicio = '20/40/1990'
+		WHERE aluguel_id = 9;
+
+
+
+
+
+	3 - UPDATE tb_cliente
+	SET nome = 'vini'
+	WHERE cliente_id = 6;
+	
+	UPDATE tb_cliente
+	SET nome = 'matias'
+	WHERE cliente_id = 8;
+	
+	UPDATE tb_cliente
+	SET nome = 'Balbas'
+	WHERE cliente_id = 2;
+	
+	UPDATE tb_cliente
+	SET nome = 'caua'
+	WHERE cliente_id = 3;
+	
+	UPDATE tb_cliente
+	SET nome = 'marcelo'
+	WHERE cliente_id = 5;
+
