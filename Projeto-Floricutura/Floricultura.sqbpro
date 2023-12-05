@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/DS-SESI/AULAS-DANIEL/BANCO-DADOS/Exercícios_SQLITE/Projeto-Floricutura/Floricultura.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="2170"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,11:mainItensPedido"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Clientes" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="122"/><column index="2" value="119"/><column index="3" value="117"/><column index="4" value="300"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="ItensPedido" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="137"/><column index="2" value="183"/><column index="3" value="109"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- Mais cinco cadastros para a tabela Flores
+INSERT INTO Flores (CodigoIdentificacao, NomeCientifico, NomePopular, Preco, QuantidadeEstoque, CoresDisponiveis) VALUES
+('FL003', 'Helianthus annuus', 'Girassol', 2.75, 90, 'Amarelo'),
+('FL004', 'Lilium candidum', 'Lírio', 4.50, 50, 'Branco'),
+('FL005', 'Jasminum officinale', 'Jasmim', 6.00, 75, 'Branco'),
+('FL006', 'Chrysanthemum morifolium', 'Crisântemo', 3.25, 85, 'Vermelho, Amarelo'),
+('FL007', 'Tulipa gesneriana', 'Tulipa', 5.00, 60, 'Vermelho, Rosa, Amarelo');
+
+-- Mais cinco cadastros para a tabela Clientes
+INSERT INTO Clientes (CPF, Nome, Telefone, EnderecoEntrega) VALUES
+('222.333.444-55', 'Bruno Martins', '19 91234-5678', 'Alameda das Acácias, 789, Bairro Primavera, Campinas, SP'),
+('333.444.555-66', 'Fernanda Lima', '31 92345-6789', 'Rua dos Pinheiros, 101, Bairro Lagoa, Belo Horizonte, MG'),
+('444.555.666-77', 'Ricardo Souza', '41 93456-7890', 'Avenida das Araucárias, 202, Bairro Bosque, Curitiba, PR'),
+('666.777.888-99', 'Patrícia Rocha', '51 94567-8901', 'Travessa das Palmeiras, 303, Bairro Oceano, Porto Alegre, RS'),
+('777.888.999-00', 'Gabriel Alves', '61 95678-9012', 'Quadra das Orquídeas, 404, Bairro Céu, Brasília, DF');
+
+-- Mais cinco cadastros para a tabela Pedidos
+INSERT INTO Pedidos (DataRealizacao, ValorTotal, CPFCliente, DataEntrega) VALUES
+('2023-12-06 11:00', 65.00, '222.333.444-55', '2023-12-07 10:00'),
+('2023-12-06 12:00', 75.00, '333.444.555-66', '2023-12-08 16:00'),
+('2023-12-06 13:00', 85.00, '444.555.666-77', '2023-12-09 12:00'),
+('2023-12-06 14:00', 95.00, '666.777.888-99', '2023-12-10 14:00'),
+('2023-12-06 15:00', 105.00, '777.888.999-00', '2023-12-11 09:00');
+
+-- Mais cinco cadastros para a tabela ItensPedido
+-- Assumindo que os números dos pedidos inseridos anteriormente são 2, 3, 4, 5 e 6.
+INSERT INTO ItensPedido (NumeroPedido, CodigoIdentificacao, Quantidade) VALUES
+(2, 'FL003', 20),
+(3, 'FL004', 25),
+(4, 'FL005', 30),
+(5, 'FL006', 35),
+(6, 'FL007', 40);
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
